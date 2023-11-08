@@ -1,0 +1,116 @@
+#define sagmotorE 12
+#define sagmotor1 11
+#define sagmotor2 10
+
+#define solmotorE 7
+#define solmotor1 9
+#define solmotor2 8
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(sagmotorE, OUTPUT) ;
+  pinMode(sagmotor1, OUTPUT); 
+  pinMode(sagmotor2, OUTPUT) ;
+
+  pinMode(solmotorE, OUTPUT) ;
+  pinMode(solmotor1, OUTPUT); 
+  pinMode(solmotor2, OUTPUT) ;
+  Serial.println("Lütfen Arabanın Hangi Hareket Yapacagını Seri Monitore Giriniz[Ileri(i), Geri(g), Saga don(x), Sola Don(y)]");
+}
+
+void loop() {
+  if (Serial.available()>0){
+    if(Serial.read()=='i'){
+      Serial.println("İleri Gidiliyor");
+      ileri();
+      delay(3000);
+      dur();
+      Serial.end();
+      Serial.begin(9600);
+      
+    
+  }
+  }
+  if (Serial.available()>0){
+    if(Serial.read()=='g'){
+      Serial.println("Geri Gidiliyor");
+      geri();
+      delay(3000);
+      dur();
+      Serial.end();
+      Serial.begin(9600);
+  }
+  }
+  if (Serial.available()>0){
+    if(Serial.read()=='x'){
+      Serial.println("Saga Dönülüyor");
+      sag();
+      delay(3000);
+      dur();
+      Serial.end();
+      Serial.begin(9600);
+    }    
+  } 
+  if (Serial.available()>0){
+    if(Serial.read()=='z'){
+      Serial.println("Sola Dönülüyor");
+      sol();
+      delay(3000);
+      dur();
+      Serial.end();
+      Serial.begin(9600);
+      
+  }
+  }
+    
+  
+}
+
+void ileri(){
+  digitalWrite(sagmotor1,HIGH);
+  digitalWrite(sagmotor2,LOW);
+  digitalWrite(sagmotorE,HIGH);
+
+
+  digitalWrite(solmotor1, LOW);
+  digitalWrite(solmotor2,HIGH);
+  digitalWrite(solmotorE,HIGH);
+}
+
+
+void geri(){
+  digitalWrite(sagmotor1, LOW);
+  digitalWrite(sagmotor2,HIGH);
+  digitalWrite(sagmotorE,HIGH);
+
+  digitalWrite(solmotor1, HIGH);
+  digitalWrite(solmotor2,LOW);
+  digitalWrite(solmotorE,HIGH);
+}
+void sag(){
+  digitalWrite(sagmotor1, HIGH);
+  digitalWrite(sagmotor2,LOW);
+  digitalWrite(sagmotorE,HIGH);
+
+  digitalWrite(solmotor1, HIGH);
+  digitalWrite(solmotor2,LOW);
+  digitalWrite(solmotorE,HIGH);
+}
+void sol(){
+  digitalWrite(sagmotor1, LOW);
+  digitalWrite(sagmotor2,HIGH);
+  digitalWrite(sagmotorE,HIGH);
+
+  digitalWrite(solmotor1, LOW);
+  digitalWrite(solmotor2,HIGH);
+  digitalWrite(solmotorE,HIGH);
+}
+void dur(){
+  digitalWrite(sagmotor1, LOW);
+  digitalWrite(sagmotor2,LOW);
+  digitalWrite(sagmotorE,LOW);
+
+  digitalWrite(solmotor1, LOW);
+  digitalWrite(solmotor2,LOW);
+  digitalWrite(solmotorE,LOW) ;
+}
